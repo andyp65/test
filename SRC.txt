@@ -1,0 +1,59 @@
+CREATE TABLE sales_attrition
+
+(
+  Department string,
+  Attrition int
+);
+
+INSERT OVERWRITE TABLE sales_attrition
+SELECT COUNT(Department) AS Attrition
+FROM employee
+WHERE Department LIKE "%Sales%" AND Attrition LIKE "%Yes%";
+
+*
+
+CREATE TABLE sales_nonattrition
+
+(
+  Department string,
+  Non_Attrition int
+);
+
+INSERT OVERWRITE TABLE sales_nonattrition
+SELECT COUNT(Department) AS non_Attrition
+FROM employee
+WHERE Department LIKE "%Sales%" AND Attrition LIKE "%No%";
+
+*
+
+SELECT Attrition, AVG(MonthlyIncome) AS average_monthly_income
+FROM employee
+WHERE Department LIKE "%Sales%"
+GROUP BY Attrition;
+
+*
+
+SELECT Attrition, MIN(MonthlyIncome) AS min_monthly_income
+FROM employee
+WHERE Department LIKE "%Sales%"
+GROUP BY Attrition;
+
+*
+
+SELECT Attrition, MAX(MonthlyIncome) AS max_monthly_income
+FROM employee
+WHERE Department LIKE "%Sales%"
+GROUP BY Attrition;
+
+*
+
+SELECT MonthlyIncome as monthlyincome, Count(MonthlyIncome) AS count
+FROM employee
+WHERE Department LIKE "%Sales%" AND Attrition LIKE "%Yes%"
+GROUP BY monthlyincome;
+
+*
+
+SELECT MonthlyIncome as monthlyincome, Count(MonthlyIncome) AS count
+FROM employee
+WHERE Department LIKE "%Sales%" AND Attrition LIKE "%No%"

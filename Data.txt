@@ -1,0 +1,2 @@
+Data: WA_Fn-UseC_-HR-Employee-Attrition.csv
+Location: https://www.kaggle.com/pavansubhasht/ibm-hr-analytics-attrition-dataset/data
